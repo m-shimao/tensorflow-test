@@ -17,9 +17,8 @@ RESULT_MODEL = args[1]
 
 #
 LEARNING_LOG_DIR = "log"
-BASE_ORDER = 7
-DATA_SIZE = 150
-MAX_ORDER = 80
+DATA_SIZE = 14
+MAX_ORDER = 14
 #
 
 #
@@ -44,8 +43,8 @@ if not os.path.exists(LEARNING_LOG_DIR):
 with tf.Graph().as_default():
 	
 	# Variable
-	x = tf.placeholder("float", shape=(None, BASE_ORDER, DATA_SIZE)) # 馬データを入れる仮のTensor
-	y_ = tf.placeholder("float", shape=(None, BASE_ORDER, MAX_ORDER)) # 順位情報を入れる仮のTensor
+	x = tf.placeholder("float", shape=(None, DATA_SIZE)) # 馬データを入れる仮のTensor
+	y_ = tf.placeholder("float", shape=(None, MAX_ORDER)) # 順位情報を入れる仮のTensor
 	w_h = tf.Variable(tf.random_normal([DATA_SIZE, HIDDEN_LAYER_SIZE], mean=0.0, stddev=0.05))
 	w_o = tf.Variable(tf.random_normal([HIDDEN_LAYER_SIZE, MAX_ORDER], mean=0.0, stddev=0.05))
 	b_h = tf.Variable(tf.zeros([HIDDEN_LAYER_SIZE]))
